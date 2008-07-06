@@ -27,21 +27,21 @@ class TagsController < NSArrayController
   def tag(sender)
     case NSRunAlertPanel("Confirm", "Are you sure you want to overwrite this tag? It is irreversable, unless you remember it :P", 'OK', 'Cancel', nil)
       when NSAlertDefaultReturn
-        tracks = @artistsController.tracks.select { |tr| tr.artist.downcase == @artistsController.artists[@artistsTable.selectedRow][0].downcase }.sort_by { |tra| tra.trackNumber }
+        tracks = @artistsController.tracks.select { |tr| tr.artist.to_s.strip.downcase == @artistsController.artists[@artistsTable.selectedRow][0].to_s.strip.downcase }
         @tagStatus.setMaxValue(tracks.length)
         NSLog("found #{tracks.length} tracks to tag")
         tracks.each do |t|
-          unless t.artist != @artistsController.artists[@artistsTable.selectedRow][0]
+          #unless t.artist.to_s.downcase != @artistsController.artists[@artistsTable.selectedRow][0].to_s.downcase
             NSLog("#{t.artist} = #{t.genre} = #{@tags[@tagsTable.selectedRow][0]}")
             t.genre = @tags[@tagsTable.selectedRow][0]
             @tagStatus.incrementBy(1)
             @tagStatus.displayIfNeeded
-          else
-            NSLog("trying to update wrong artist!")
-          end
+          #else
+            #NSLog("trying to update wrong artist!")
+          #end
         end
         @tagStatus.incrementBy(tracks.length * -1) # reset progress indicator
-        #@artistsController.updateGenre(@tags[@tagsTable.selectedRow][0])
+        @artistsController.updateGenre(@tags[@tagsTable.selectedRow][0])
         #@artistsController.loadPlaylist(sender)
       when NSAlertAlternateReturn
         return

@@ -12,6 +12,8 @@
 		4DDCA70C0ACC9A6100E082CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		4DDCA70D0ACC9A6100E082CE /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F5E24E03AEB6EC03A81C6F /* RubyCocoa.framework */; };
 		DE2895FF0E20935600AC6717 /* AppController.rb in Resources */ = {isa = PBXBuildFile; fileRef = DE2895FE0E20935600AC6717 /* AppController.rb */; };
+		DE2E42650E215B4300555291 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE2E42640E215B4300555291 /* Sparkle.framework */; };
+		DE2E42AF0E215BC000555291 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DE2E42640E215B4300555291 /* Sparkle.framework */; };
 		DE5C8D230E2045E70075EA4B /* ArtistsController.rb in Resources */ = {isa = PBXBuildFile; fileRef = DE5C8D220E2045E70075EA4B /* ArtistsController.rb */; };
 		DE5C8D270E2045F60075EA4B /* PlaylistsController.rb in Resources */ = {isa = PBXBuildFile; fileRef = DE5C8D260E2045F60075EA4B /* PlaylistsController.rb */; };
 		DE5C8D290E2045FF0075EA4B /* TagsController.rb in Resources */ = {isa = PBXBuildFile; fileRef = DE5C8D280E2045FF0075EA4B /* TagsController.rb */; };
@@ -22,6 +24,19 @@
 		DE5C8DCA0E2062610075EA4B /* Artist.rb in Resources */ = {isa = PBXBuildFile; fileRef = DE5C8DC90E2062610075EA4B /* Artist.rb */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DE2E42B50E215BC200555291 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DE2E42AF0E215BC000555291 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -31,6 +46,7 @@
 		4DDCA7110ACC9A6100E082CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DDCA7120ACC9A6100E082CE /* last.fm-tagger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "last.fm-tagger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2895FE0E20935600AC6717 /* AppController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AppController.rb; sourceTree = "<group>"; };
+		DE2E42640E215B4300555291 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		DE5C8D220E2045E70075EA4B /* ArtistsController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ArtistsController.rb; sourceTree = "<group>"; };
 		DE5C8D260E2045F60075EA4B /* PlaylistsController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = PlaylistsController.rb; sourceTree = "<group>"; };
 		DE5C8D280E2045FF0075EA4B /* TagsController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = TagsController.rb; sourceTree = "<group>"; };
@@ -49,6 +65,7 @@
 			files = (
 				4DDCA70C0ACC9A6100E082CE /* Cocoa.framework in Frameworks */,
 				4DDCA70D0ACC9A6100E082CE /* RubyCocoa.framework in Frameworks */,
+				DE2E42650E215B4300555291 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +87,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE2E42640E215B4300555291 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				E8F5E24E03AEB6EC03A81C6F /* RubyCocoa.framework */,
 			);
@@ -156,6 +174,7 @@
 				4DDCA7050ACC9A6100E082CE /* Resources */,
 				4DDCA7090ACC9A6100E082CE /* Sources */,
 				4DDCA70B0ACC9A6100E082CE /* Frameworks */,
+				DE2E42B50E215BC200555291 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -257,6 +276,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -272,6 +296,11 @@
 		4DDCA7100ACC9A6100E082CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;

@@ -21,9 +21,15 @@ class ArtistsController < NSArrayController
   def loadPlaylist(sender)
     @queryStatus.startAnimation(sender)  
     @playlist = @iTunes.sources.first.userPlaylists.select { |p| p.name == @playlistsController.titleOfSelectedItem }
-    @tracks = @playlist.first.tracks
-    @artists = NSArray.alloc.initWithArray(@tracks.map { |t| Artist.new(t.artist, t.genre).full }.uniq)
-    @artistsTable.reloadData
+    if @playlist.first.smart == 1
+      NSRunCriticalAlertPanel("Invalid Playlist", "You are trying to load a smart playlist, please choose another one.", 'OK', nil, nil)
+    elsif @playlist.first.tracks.count > 2500
+      NSRunCriticalAlertPanel("Playlist Too Large", "You are trying to load a playlist with over 2500 tracks. Please remove some tracks or select another playlist.", 'OK', nil, nil)
+    else
+      @tracks = @playlist.first.tracks
+      @artists = NSArray.alloc.initWithArray(@tracks.map { |t| Artist.new(t.artist, t.genre).full }.uniq)
+      @artistsTable.reloadData
+    end
     @queryStatus.stopAnimation(sender)
   end
   
