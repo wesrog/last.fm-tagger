@@ -10,7 +10,8 @@ class ArtistsController < NSArrayController
   ib_outlets :artistsTable, :playlistsController, :queryStatus
   ib_action :loadPlaylist
   
-  attr_accessor :artists, :tracks
+  attr_accessor :artists
+  attr_reader :tracks, :playlist
     
   def initialize
     @iTunes = SBApplication.applicationWithBundleIdentifier_("com.apple.iTunes")
@@ -19,7 +20,8 @@ class ArtistsController < NSArrayController
   
   def loadPlaylist(sender)
     @queryStatus.startAnimation(sender)  
-    @tracks = @iTunes.sources.first.playlists.select { |p| p.name == @playlistsController.titleOfSelectedItem }.first.tracks
+    @playlist = @iTunes.sources.first.userPlaylists.select { |p| p.name == @playlistsController.titleOfSelectedItem }
+    @tracks = @playlist.first.tracks
     @artists = NSArray.alloc.initWithArray(@tracks.map { |t| Artist.new(t.artist, t.genre).full }.uniq)
     @artistsTable.reloadData
     @queryStatus.stopAnimation(sender)

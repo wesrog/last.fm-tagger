@@ -14,6 +14,6 @@ class PlaylistsController < NSArrayController
   end
   
   def awakeFromNib
-    @playlistsPopUp.addItemsWithTitles(@iTunes.sources.first.playlists.map { |p| p }.reject { |p| p.tracks.length > 2500 }.map { |p| p.name })
+    @playlistsPopUp.addItemsWithTitles(@iTunes.sources.first.userPlaylists.map { |p| p }.reject { |p| p.tracks.length > 2500 or p.smart == 1 }.map { |p| p.name })
   end
 end

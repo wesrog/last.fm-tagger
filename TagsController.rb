@@ -19,20 +19,30 @@ class TagsController < NSArrayController
     #@tags = NSArray.alloc.init
     @tags = []
   end
+  
+  def awakeFromNib
+    @tagStatus.setUsesThreadedAnimation(true)
+  end
 
   def tag(sender)
     case NSRunAlertPanel("Confirm", "Are you sure you want to overwrite this tag? It is irreversable, unless you remember it :P", 'OK', 'Cancel', nil)
       when NSAlertDefaultReturn
-        tracks = @artistsController.tracks.select { |t| t.artist == @artistsController.artists[@artistsTable.selectedRow][0] }
+        tracks = @artistsController.tracks.select { |tr| tr.artist.downcase == @artistsController.artists[@artistsTable.selectedRow][0].downcase }.sort_by { |tra| tra.trackNumber }
         @tagStatus.setMaxValue(tracks.length)
+        NSLog("found #{tracks.length} tracks to tag")
         tracks.each do |t|
-          NSLog("#{t.genre} = #{@tags[@tagsTable.selectedRow][0]}")
-          t.genre = @tags[@tagsTable.selectedRow][0]
-          @tagStatus.incrementBy(1)
-          @tagStatus.displayIfNeeded
+          unless t.artist != @artistsController.artists[@artistsTable.selectedRow][0]
+            NSLog("#{t.artist} = #{t.genre} = #{@tags[@tagsTable.selectedRow][0]}")
+            t.genre = @tags[@tagsTable.selectedRow][0]
+            @tagStatus.incrementBy(1)
+            @tagStatus.displayIfNeeded
+          else
+            NSLog("trying to update wrong artist!")
+          end
         end
-        @tagStatus.incrementBy(tracks.length * -1)
-        @artistsController.updateGenre(@tags[@tagsTable.selectedRow][0])
+        @tagStatus.incrementBy(tracks.length * -1) # reset progress indicator
+        #@artistsController.updateGenre(@tags[@tagsTable.selectedRow][0])
+        #@artistsController.loadPlaylist(sender)
       when NSAlertAlternateReturn
         return
     end
@@ -50,17 +60,17 @@ class TagsController < NSArrayController
     doc.root.elements.to_a("//tag").each do |tag|
       @tags << [tag.elements.to_a("name")[0].text, tag.elements.to_a("count")[0].text]
     end
-    NSRunAlertPanel("Sorry!", "No tags found :(", 'OK', nil, nil) if @tags.empty?
+    alert_no_tags_found if @tags.empty?
     #NSReleaseAlertPanel
     @queryStatus.stopAnimation(note)
     @tagsTable.reloadData
   rescue OpenURI::HTTPError
     NSLog "404!"
-    NSRunAlertPanel("Sorry!", "No tags found :(", 'OK', nil, nil)
+    alert_no_tags_found
     @queryStatus.stopAnimation(note)
     #@tags.release # free memory
     #@tags = NSMutableArray.alloc.init
-    @tags = []
+    @tags.clear
   end
   
   def numberOfRowsInTableView(sender)
@@ -73,5 +83,11 @@ class TagsController < NSArrayController
     else
       @tags[row][1]
     end
+  end
+  
+  private
+  
+  def alert_no_tags_found
+    NSRunAlertPanel("Sorry!", "No tags found :(", 'OK', nil, nil)
   end
 end
