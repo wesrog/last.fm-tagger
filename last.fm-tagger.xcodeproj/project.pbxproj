@@ -11,6 +11,7 @@
 		4DDCA70A0ACC9A6100E082CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		4DDCA70C0ACC9A6100E082CE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		4DDCA70D0ACC9A6100E082CE /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F5E24E03AEB6EC03A81C6F /* RubyCocoa.framework */; };
+		DE2895FF0E20935600AC6717 /* AppController.rb in Resources */ = {isa = PBXBuildFile; fileRef = DE2895FE0E20935600AC6717 /* AppController.rb */; };
 		DE5C8D230E2045E70075EA4B /* ArtistsController.rb in Resources */ = {isa = PBXBuildFile; fileRef = DE5C8D220E2045E70075EA4B /* ArtistsController.rb */; };
 		DE5C8D270E2045F60075EA4B /* PlaylistsController.rb in Resources */ = {isa = PBXBuildFile; fileRef = DE5C8D260E2045F60075EA4B /* PlaylistsController.rb */; };
 		DE5C8D290E2045FF0075EA4B /* TagsController.rb in Resources */ = {isa = PBXBuildFile; fileRef = DE5C8D280E2045FF0075EA4B /* TagsController.rb */; };
@@ -18,6 +19,7 @@
 		DE5C8D2E0E2046210075EA4B /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = DE5C8D2C0E2046210075EA4B /* MainMenu.nib */; };
 		DE5C8D300E20462F0075EA4B /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = DE5C8D2F0E20462F0075EA4B /* icon.icns */; };
 		DE5C8D450E20471D0075EA4B /* README in Resources */ = {isa = PBXBuildFile; fileRef = DE5C8D440E20471D0075EA4B /* README */; };
+		DE5C8DCA0E2062610075EA4B /* Artist.rb in Resources */ = {isa = PBXBuildFile; fileRef = DE5C8DC90E2062610075EA4B /* Artist.rb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		4DDCA7110ACC9A6100E082CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DDCA7120ACC9A6100E082CE /* last.fm-tagger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "last.fm-tagger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE2895FE0E20935600AC6717 /* AppController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AppController.rb; sourceTree = "<group>"; };
 		DE5C8D220E2045E70075EA4B /* ArtistsController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ArtistsController.rb; sourceTree = "<group>"; };
 		DE5C8D260E2045F60075EA4B /* PlaylistsController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = PlaylistsController.rb; sourceTree = "<group>"; };
 		DE5C8D280E2045FF0075EA4B /* TagsController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = TagsController.rb; sourceTree = "<group>"; };
@@ -35,6 +38,7 @@
 		DE5C8D2D0E2046210075EA4B /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		DE5C8D2F0E20462F0075EA4B /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		DE5C8D440E20471D0075EA4B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		DE5C8DC90E2062610075EA4B /* Artist.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Artist.rb; sourceTree = "<group>"; };
 		E8F5E24E03AEB6EC03A81C6F /* RubyCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RubyCocoa.framework; path = /Library/Frameworks/RubyCocoa.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +61,8 @@
 				DE5C8D280E2045FF0075EA4B /* TagsController.rb */,
 				DE5C8D260E2045F60075EA4B /* PlaylistsController.rb */,
 				DE5C8D220E2045E70075EA4B /* ArtistsController.rb */,
+				DE5C8DC90E2062610075EA4B /* Artist.rb */,
+				DE2895FE0E20935600AC6717 /* AppController.rb */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -191,6 +197,8 @@
 				DE5C8D2E0E2046210075EA4B /* MainMenu.nib in Resources */,
 				DE5C8D300E20462F0075EA4B /* icon.icns in Resources */,
 				DE5C8D450E20471D0075EA4B /* README in Resources */,
+				DE5C8DCA0E2062610075EA4B /* Artist.rb in Resources */,
+				DE2895FF0E20935600AC6717 /* AppController.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +241,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Debug;
 		};
@@ -242,6 +251,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Release;
 		};

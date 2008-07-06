@@ -20,7 +20,7 @@ class ArtistsController < NSArrayController
   def loadPlaylist(sender)
     @queryStatus.startAnimation(sender)  
     @tracks = @iTunes.sources.first.playlists.select { |p| p.name == @playlistsController.titleOfSelectedItem }.first.tracks
-    @artists = NSArray.alloc.initWithArray(@tracks.map { |t| [t.artist, t.genre] }.uniq)
+    @artists = NSArray.alloc.initWithArray(@tracks.map { |t| Artist.new(t.artist, t.genre).full }.uniq)
     @artistsTable.reloadData
     @queryStatus.stopAnimation(sender)
   end
