@@ -1,0 +1,99 @@
+// !$*UTF8*$!
+{
+	089C165DFE840E0CC02AAC07 /* English */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {575, 509}}";
+			sepNavSelRange = "{209, 0}";
+			sepNavVisRange = "{0, 213}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeArchitecture = i386;
+		activeBuildConfigurationName = Release;
+		activeExecutable = DE5C8D1E0E2045D30075EA4B /* last.fm-tagger */;
+		activeTarget = 4DDCA7030ACC9A6100E082CE /* last.fm-tagger */;
+		addToTargets = (
+			4DDCA7030ACC9A6100E082CE /* last.fm-tagger */,
+		);
+		codeSenseManager = DE5C8D250E2045E80075EA4B /* Code sense */;
+		executables = (
+			DE5C8D1E0E2045D30075EA4B /* last.fm-tagger */,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 236996051;
+			PBXWorkspaceStateSaveDate = 236996051;
+		};
+		sourceControlManager = DE5C8D240E2045E80075EA4B /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	4DDCA7030ACC9A6100E082CE /* last.fm-tagger */ = {
+		activeExec = 0;
+		executables = (
+			DE5C8D1E0E2045D30075EA4B /* last.fm-tagger */,
+		);
+	};
+	4DDCA7110ACC9A6100E082CE /* Info.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {674, 509}}";
+			sepNavSelRange = "{501, 0}";
+			sepNavVisRange = "{0, 861}";
+		};
+	};
+	DE5C8D1E0E2045D30075EA4B /* last.fm-tagger */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = "last.fm-tagger";
+		sourceDirectories = (
+		);
+	};
+	DE5C8D220E2045E70075EA4B /* ArtistsController.rb */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {752, 588}}";
+			sepNavSelRange = "{322, 0}";
+			sepNavVisRange = "{0, 1037}";
+		};
+	};
+	DE5C8D240E2045E80075EA4B /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	DE5C8D250E2045E80075EA4B /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	DE5C8D260E2045F60075EA4B /* PlaylistsController.rb */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {860, 509}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 493}";
+		};
+	};
+	DE5C8D280E2045FF0075EA4B /* TagsController.rb */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {740, 896}}";
+			sepNavSelRange = "{97, 8}";
+			sepNavVisRange = "{0, 1046}";
+		};
+	};
+}
