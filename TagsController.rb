@@ -21,29 +21,24 @@ class TagsController < NSArrayController
   end
   
   def tag(sender)
-    tracks = @artistsController.tracks.select { |tr| tr.artist.to_s.strip.downcase == @artistsController.artists[@artistsTable.selectedRow][0].to_s.strip.downcase }
-    case NSRunAlertPanel("Confirm", "Are you sure you want to overwrite this tag for #{tracks.length} tracks?", 'OK', 'Cancel', nil)
+    tracks_length = @tracks.length
+    case NSRunAlertPanel("Confirm", "Are you sure you want to overwrite this tag for #{tracks_length} tracks?", 'OK', 'Cancel', nil)
       when NSAlertDefaultReturn
-        @tagStatus.setMaxValue(tracks.length)
-        NSLog("found #{tracks.length} tracks to tag")
-        tracks.each_with_index do |t, i|
-          #unless t.artist.to_s.downcase != @artistsController.artists[@artistsTable.selectedRow][0].to_s.downcase
-            NSLog("#{t.artist} = #{t.genre} = #{@tags[@tagsTable.selectedRow][0]}")
-            @statusLabel.setStringValue("Tagging #{t.name}")
-            @statusLabel.displayIfNeeded
-            @taggedTracksCountLabel.setStringValue("#{i}/#{tracks.length}")
-            @taggedTracksCountLabel.displayIfNeeded
-            t.genre = @tags[@tagsTable.selectedRow][0]
-            @tagStatus.incrementBy(1)
-            @tagStatus.displayIfNeeded
-          #else
-            #NSLog("trying to update wrong artist!")
-          #end
+        @tagStatus.setMaxValue(tracks_length)
+        NSLog("found #{tracks_length} tracks to tag")
+        @tracks.each_with_index do |t, i|
+          NSLog("#{t.artist} - #{t.genre} = #{@tags[@tagsTable.selectedRow][0]}")
+          @statusLabel.setStringValue("Status: writing \"#{t.name}\"")
+          @statusLabel.displayIfNeeded
+          @taggedTracksCountLabel.setStringValue("#{i+1}/#{tracks_length}")
+          @taggedTracksCountLabel.displayIfNeeded
+          t.genre = @tags[@tagsTable.selectedRow][0]
+          @tagStatus.incrementBy(1)
+          @tagStatus.displayIfNeeded
         end
         @statusLabel.setStringValue('Done!')
-        @taggedTracksCountLabel.setStringValue("#{tracks.length}/#{tracks.length}")
         #tracks.dealloc()
-        @tagStatus.incrementBy(tracks.length * -1) # reset progress indicator
+        @tagStatus.incrementBy(tracks_length * -1) # reset progress indicator
         @artistsController.updateGenre(@tags[@tagsTable.selectedRow][0])
         #@artistsController.loadPlaylist(sender)
       when NSAlertAlternateReturn
@@ -53,9 +48,12 @@ class TagsController < NSArrayController
   end
 
   def tableViewSelectionDidChange(note)
+    @selected_artist = @artistsController.artists[@artistsTable.selectedRow][0]
     @queryStatus.startAnimation(note)
-    url = "http://ws.audioscrobbler.com/1.0/artist/#{Artist.new(@artistsController.artists[@artistsTable.selectedRow][0], nil).name.to_s}/toptags.xml"
+    url = "http://ws.audioscrobbler.com/1.0/artist/#{Artist.new(@selected_artist, nil).name.to_s}/toptags.xml"
     NSLog("Querying: #{url}")
+    NSLog("Building track list for artist...")
+    @tracks = @artistsController.tracks.select { |tr| tr.artist.to_s.strip.downcase == @selected_artist.to_s.strip.downcase }    
     doc = Document.new(open(url.to_s))
     @tags = NSMutableArray.alloc.init
     doc.root.elements.to_a("//tag").each do |tag|

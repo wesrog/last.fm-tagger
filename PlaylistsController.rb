@@ -19,6 +19,7 @@ class PlaylistsController < NSArrayController
   end
   
   def reloadPlaylists
+    @playlistsPopUp.removeAllItems
     @playlistsPopUp.addItemsWithTitles(@iTunes.sources.first.userPlaylists.reject { |p| p.smart == 1 }.map { |p| p.name })
   end
 end
