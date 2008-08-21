@@ -1,6 +1,6 @@
 #
 #  TagsArray.rb
-#  last.fm-tagger2
+#  last.fm-tagger
 #
 #  Created by Wes Rogers on 7/5/08.
 #  Copyright (c) 2008 633k.net. All rights reserved.
@@ -12,27 +12,27 @@ require 'rexml/document'
 include REXML
 
 class TagsController < NSArrayController
-  ib_outlets :tagsTable, :artistsController, :artistsTable, :queryStatus, :tagStatus
+  ib_outlets :tagsTable, :artistsController, :artistsTable, :queryStatus, :tagStatus, :statusLabel, :taggedTracksCountLabel
   ib_action :tag
 
   def initialize
     #@tags = NSArray.alloc.init
-    @tags = []
+    #@tags = []
   end
   
-  def awakeFromNib
-    @tagStatus.setUsesThreadedAnimation(true)
-  end
-
   def tag(sender)
-    case NSRunAlertPanel("Confirm", "Are you sure you want to overwrite this tag? It is irreversable, unless you remember it :P", 'OK', 'Cancel', nil)
+    tracks = @artistsController.tracks.select { |tr| tr.artist.to_s.strip.downcase == @artistsController.artists[@artistsTable.selectedRow][0].to_s.strip.downcase }
+    case NSRunAlertPanel("Confirm", "Are you sure you want to overwrite this tag for #{tracks.length} tracks?", 'OK', 'Cancel', nil)
       when NSAlertDefaultReturn
-        tracks = @artistsController.tracks.select { |tr| tr.artist.to_s.strip.downcase == @artistsController.artists[@artistsTable.selectedRow][0].to_s.strip.downcase }
         @tagStatus.setMaxValue(tracks.length)
         NSLog("found #{tracks.length} tracks to tag")
-        tracks.each do |t|
+        tracks.each_with_index do |t, i|
           #unless t.artist.to_s.downcase != @artistsController.artists[@artistsTable.selectedRow][0].to_s.downcase
             NSLog("#{t.artist} = #{t.genre} = #{@tags[@tagsTable.selectedRow][0]}")
+            @statusLabel.setStringValue("Tagging #{t.name}")
+            @statusLabel.displayIfNeeded
+            @taggedTracksCountLabel.setStringValue("#{i}/#{tracks.length}")
+            @taggedTracksCountLabel.displayIfNeeded
             t.genre = @tags[@tagsTable.selectedRow][0]
             @tagStatus.incrementBy(1)
             @tagStatus.displayIfNeeded
@@ -40,6 +40,9 @@ class TagsController < NSArrayController
             #NSLog("trying to update wrong artist!")
           #end
         end
+        @statusLabel.setStringValue('Done!')
+        @taggedTracksCountLabel.setStringValue("#{tracks.length}/#{tracks.length}")
+        #tracks.dealloc()
         @tagStatus.incrementBy(tracks.length * -1) # reset progress indicator
         @artistsController.updateGenre(@tags[@tagsTable.selectedRow][0])
         #@artistsController.loadPlaylist(sender)
@@ -50,15 +53,13 @@ class TagsController < NSArrayController
   end
 
   def tableViewSelectionDidChange(note)
-    #@tags.release # free memory
-    #@tags = NSMutableArray.alloc.init
-    @tags.clear
     @queryStatus.startAnimation(note)
     url = "http://ws.audioscrobbler.com/1.0/artist/#{Artist.new(@artistsController.artists[@artistsTable.selectedRow][0], nil).name.to_s}/toptags.xml"
-    puts url.to_s
+    NSLog("Querying: #{url}")
     doc = Document.new(open(url.to_s))
+    @tags = NSMutableArray.alloc.init
     doc.root.elements.to_a("//tag").each do |tag|
-      @tags << [tag.elements.to_a("name")[0].text, tag.elements.to_a("count")[0].text]
+      @tags.addObject(NSArray.arrayWithObjects(tag.elements.to_a("name")[0].text.to_s, tag.elements.to_a("count")[0].text.to_s, nil))
     end
     alert_no_tags_found if @tags.empty?
     #NSReleaseAlertPanel
@@ -68,13 +69,10 @@ class TagsController < NSArrayController
     NSLog "404!"
     alert_no_tags_found
     @queryStatus.stopAnimation(note)
-    #@tags.release # free memory
-    #@tags = NSMutableArray.alloc.init
-    @tags.clear
   end
   
   def numberOfRowsInTableView(sender)
-    @tags.length
+    @tags.length if @tags
   end
 
   def tableView_objectValueForTableColumn_row(sender, col, row)

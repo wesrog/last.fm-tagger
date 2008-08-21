@@ -1,6 +1,6 @@
 #
 #  ArtistsArray.rb
-#  last.fm-tagger2
+#  last.fm-tagger
 #
 #  Created by Wes Rogers on 7/5/08.
 #  Copyright (c) 2008 633k.net. All rights reserved.
@@ -9,13 +9,14 @@
 class ArtistsController < NSArrayController
   ib_outlets :artistsTable, :playlistsController, :queryStatus
   ib_action :loadPlaylist
+  ib_action :reloadPlaylistData
   
   attr_accessor :artists
   attr_reader :tracks, :playlist
     
   def initialize
     @iTunes = SBApplication.applicationWithBundleIdentifier_("com.apple.iTunes")
-    @artists = []
+    @artists = NSArray.alloc.init
   end
   
   def loadPlaylist(sender)
@@ -31,6 +32,10 @@ class ArtistsController < NSArrayController
       @artistsTable.reloadData
     end
     @queryStatus.stopAnimation(sender)
+  end
+  
+  def reloadPlaylistData(sender)
+    loadPlaylist(sender)
   end
   
   def updateGenre(genre)

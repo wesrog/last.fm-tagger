@@ -3,7 +3,7 @@
 #  last.fm-tagger
 #
 #  Created by Wes Rogers on 7/5/08.
-#  Copyright (c) 2008 __MyCompanyName__. All rights reserved.
+#  Copyright (c) 2008 633k.net. All rights reserved.
 #
 
 require 'cgi'

@@ -43,8 +43,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		4DDCA7110ACC9A6100E082CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
-		4DDCA7120ACC9A6100E082CE /* last.fm-tagger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "last.fm-tagger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DDCA7110ACC9A6100E082CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DDCA7120ACC9A6100E082CE /* Last.fm Tagger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Last.fm Tagger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2895FE0E20935600AC6717 /* AppController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AppController.rb; sourceTree = "<group>"; };
 		DE2E42640E215B4300555291 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		DE5C8D220E2045E70075EA4B /* ArtistsController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ArtistsController.rb; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4DDCA7120ACC9A6100E082CE /* last.fm-tagger.app */,
+				4DDCA7120ACC9A6100E082CE /* Last.fm Tagger.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -166,9 +166,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4DDCA7030ACC9A6100E082CE /* last.fm-tagger */ = {
+		4DDCA7030ACC9A6100E082CE /* Last.fm Tagger */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4DDCA70E0ACC9A6100E082CE /* Build configuration list for PBXNativeTarget "last.fm-tagger" */;
+			buildConfigurationList = 4DDCA70E0ACC9A6100E082CE /* Build configuration list for PBXNativeTarget "Last.fm Tagger" */;
 			buildPhases = (
 				4DDCA7040ACC9A6100E082CE /* Headers */,
 				4DDCA7050ACC9A6100E082CE /* Resources */,
@@ -180,10 +180,10 @@
 			);
 			dependencies = (
 			);
-			name = "last.fm-tagger";
+			name = "Last.fm Tagger";
 			productInstallPath = "$(HOME)/Applications";
 			productName = "last.fm-tagger";
-			productReference = 4DDCA7120ACC9A6100E082CE /* last.fm-tagger.app */;
+			productReference = 4DDCA7120ACC9A6100E082CE /* Last.fm Tagger.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -198,7 +198,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4DDCA7030ACC9A6100E082CE /* last.fm-tagger */,
+				4DDCA7030ACC9A6100E082CE /* Last.fm Tagger */,
 			);
 		};
 /* End PBXProject section */
@@ -305,7 +305,7 @@
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = "last.fm-tagger";
+				PRODUCT_NAME = "Last.fm Tagger";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -322,7 +322,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4DDCA70E0ACC9A6100E082CE /* Build configuration list for PBXNativeTarget "last.fm-tagger" */ = {
+		4DDCA70E0ACC9A6100E082CE /* Build configuration list for PBXNativeTarget "Last.fm Tagger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4DDCA70F0ACC9A6100E082CE /* Debug */,
